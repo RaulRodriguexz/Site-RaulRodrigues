@@ -21,6 +21,15 @@ import type { Tema } from '../../hooks/useTema'
  * vez de adaptá-la.
  */
 export type Paleta = {
+  /**
+   * Hero — a forma abstrata no centro (D-91, substitui o Memoji): icosaedro
+   * com corpo sólido, arestas em wireframe e vértices brilhando. O corpo é
+   * opaco e escreve profundidade, então as órbitas somem de verdade atrás dele.
+   */
+  formaCorpo: string
+  formaAresta: string
+  formaArestaOpacidade: number
+  formaVertice: string
   /** Hero — anel largo e a faísca que corre nele (M-5). */
   anelLargo: string
   anelLargoOpacidade: number
@@ -84,6 +93,12 @@ export type Paleta = {
 
 export const PALETAS: Record<Tema, Paleta> = {
   claro: {
+    /* corpo lavanda que lê como sólido sobre a página quase branca; aresta
+       roxo-profundo forte sobre ele; vértices no mesmo roxo dos links */
+    formaCorpo: '#9a76bf',
+    formaAresta: '#3d0a63',
+    formaArestaOpacidade: 0.7,
+    formaVertice: '#6e11b0',
     anelLargo: '#6e11b0',
     anelLargoOpacidade: 0.55,
     anelPequeno: '#8c62ac',
@@ -137,6 +152,12 @@ export const PALETAS: Record<Tema, Paleta> = {
     anelClaro: '#f4f1f8',
   },
   escuro: {
+    /* corpo roxo-escuro, mais claro que o canvas para existir sobre a página
+       quase preta; aresta no roxo claro decorativo; vértices brancos brilhando */
+    formaCorpo: '#2c2240',
+    formaAresta: '#cd9cff',
+    formaArestaOpacidade: 0.65,
+    formaVertice: '#ffffff',
     /*
      * Os papéis dos dois roxos **invertem de luminosidade sem trocar de
      * função**, exatamente como nos tokens do CSS: no claro o `primary-deep` é

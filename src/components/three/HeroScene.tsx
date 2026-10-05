@@ -1,7 +1,7 @@
 import { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import type { Group } from 'three'
-import { MemojiCard } from './MemojiCard'
+import { HeroForm } from './HeroForm'
 import { Backdrop } from './Backdrop'
 import { useScrollProgress } from '../../hooks/useScrollProgress'
 
@@ -66,7 +66,7 @@ export default function HeroScene() {
             canvas — sem isso o Memoji encolhia de 366 para 266 px de pele.
           */}
           <group position={[0, -0.28, 0]} scale={1.3}>
-            <MemojiCard />
+            <HeroForm />
             <Backdrop />
           </group>
         </Rig>

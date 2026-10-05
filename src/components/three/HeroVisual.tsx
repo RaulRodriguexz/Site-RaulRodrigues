@@ -74,13 +74,32 @@ export function HeroStage() {
          * alta — sem ele passava de 400 para 655 px em 1440×1080. Abaixo de
          * 640 px o dimensionamento antigo fica como estava.
          */
-        <img
-          src="/images/memoji.webp"
-          alt=""
-          className="absolute bottom-0 left-1/2 w-[62%] max-w-[320px] -translate-x-1/2 object-contain object-bottom opacity-95 sm:h-full sm:max-h-[28rem] sm:w-auto sm:max-w-[92%]"
-          loading="eager"
-          decoding="async"
-        />
+        /*
+         * D-91 — fallback sem o Memoji: a mesma forma geométrica, agora como um
+         * SVG (icosaedro projetado) com um brilho suave atrás. Sem rede, sem
+         * WebGL — é o que aparece no celular, sem GPU e com reduced-motion.
+         */
+        <div className="absolute inset-0 flex items-center justify-center text-primary-deep">
+          <div className="absolute h-[52%] max-h-[22rem] w-[52%] max-w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(140,98,172,0.22),transparent_68%)]" />
+          <svg
+            viewBox="0 0 200 200"
+            className="relative h-[46%] max-h-[20rem] w-auto opacity-90"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.1"
+            strokeLinejoin="round"
+          >
+            <polyline points="100,30 167,78 141,157 59,157 33,78 100,30" opacity="0.85" />
+            <polyline points="120,73 132,111 100,134 68,111 80,73 120,73" opacity="0.85" />
+            <polyline points="100,30 120,73 167,78 132,111 141,157 100,134 59,157 68,111 33,78 80,73 100,30" opacity="0.55" />
+            {[
+              [100, 30], [167, 78], [141, 157], [59, 157], [33, 78],
+              [120, 73], [132, 111], [100, 134], [68, 111], [80, 73],
+            ].map(([cx, cy]) => (
+              <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="2.6" fill="currentColor" stroke="none" />
+            ))}
+          </svg>
+        </div>
       )}
 
       <style>{`@keyframes sceneIn { to { opacity: 1 } }`}</style>
