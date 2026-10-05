@@ -14,7 +14,12 @@
  * O motivo do segundo destaque **não é geometria**: depois da D-78 o site
  * se apresenta como AI Solutions Engineer, então em destaque ficam os dois
  * trabalhos que provam que ele resolve problema de alguém — um público e
- * clicável, um pago. Titanic e este site são credibilidade técnica.
+ * clicável, um pago. Ticket Triage e este site são credibilidade técnica.
+ *
+ * **D-90 (05/10): Titanic sai, Ticket Triage entra no mesmo slot compacto.**
+ * O Titanic é o projeto-tutorial de Kaggle que todo iniciante tem; com um
+ * projeto de AI engineering real (API + evals + guardrails) ele só puxava o
+ * nível pra baixo. A troca mantém os 4 cards e o layout da D-81 intactos.
  *
  * **A ORDEM do array importa e faz parte da decisão.** Só ligar as duas
  * flags já mata o órfão, mas deixa as linhas em destaque / compacto +
@@ -77,15 +82,21 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: 'titanic-ml',
-    title: 'Titanic ML',
+    /**
+     * D-90 — substitui o Titanic. Projeto pessoal de AI engineering, público e
+     * clicável. Sem `demo` até o deploy sair; o `ProjectCard` omite o link que
+     * faltar. O `impact` ganha o número medido quando a avaliação real rodar.
+     */
+    id: 'ticket-triage',
+    title: 'Ticket Triage',
     problem:
-      'Before claiming to work with machine learning, I wanted a public, reproducible result instead of a certificate.',
+      'Support teams repeat the same first pass on every ticket — read it, pick a category, judge how urgent it really is, draft a reply — thousands of times over.',
     solution:
-      'A full pipeline — exploratory analysis, feature engineering, model comparison and validation — with every decision documented in the README.',
-    impact: '0.78 on Kaggle, with the reasoning written down end to end.',
-    stack: ['Python', 'scikit-learn', 'pandas'],
-    repo: 'https://github.com/RaulRodriguexz/titanic-machine-learning',
+      'A Python service (CLI + FastAPI) that does that first pass with one Claude call per ticket, returning validated JSON. A router sends easy tickets to a cheaper model; guardrails block invented refunds and ignore instructions hidden in a ticket.',
+    impact:
+      'A public, working service: structured JSON per ticket, a 14-case evaluation, prompt-injection guardrails, and a Haiku to Sonnet router to cut cost.',
+    stack: ['Python', 'FastAPI', 'Claude API', 'Pydantic'],
+    repo: 'https://github.com/RaulRodriguexz/ticket-triage',
   },
   {
     id: 'this-site',
